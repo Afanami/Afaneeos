@@ -32,9 +32,9 @@ class Track extends Component {
                     <h3>{this.props.track.name}</h3>
                     <p>{this.props.track.artist} | {this.props.track.album}</p>
                 </div>
-                <a className="Track-action" isRemoval={true}>
+                <div className="Track-action" isRemoval={true}>
                     {this.renderAction()}
-                </a>
+                </div>
             </div>
         );
     }

@@ -22,6 +22,16 @@ class App extends Component {
     this.searchSpotify = this.searchSpotify.bind(this);
   }
 
+  componentWillUpdate() {
+    localStorage.setItem('playlistTracks', JSON.stringify(this.state.playlistTracks));
+  }
+
+  componentWillMount() {
+    localStorage.getItem('playlistTracks') && this.setState({
+        playlistTracks: JSON.parse(localStorage.getItem('playlistTracks'))
+    });
+  }
+
   addTrack(track) {
     if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
@@ -52,7 +62,7 @@ class App extends Component {
 
     this.setState({
       playlistName: 'New Playlist',
-      playlistTracks: []
+      playlistTracks: [],
     });
   }
 
@@ -77,7 +87,7 @@ class App extends Component {
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
-              onSave={this.savePlaylist} />
+              onSave={this.savePlaylist}/>
           </div>
         </div>
       </div>
