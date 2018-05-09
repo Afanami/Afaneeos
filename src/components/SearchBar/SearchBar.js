@@ -12,6 +12,16 @@ class SearchBar extends Component {
         this.handleTermChange = this.handleTermChange.bind(this);
     }
 
+    componentWillUpdate() {
+        localStorage.setItem('searchTerm', JSON.stringify(this.state.searchTerm));
+    }
+
+    componentWillMount() {
+        localStorage.getItem('searchTerm') && this.setState({
+            searchTerm: JSON.parse(localStorage.getItem('searchTerm'))
+        });
+    }
+
     handleTermChange(event) {
         this.setState({
             searchTerm: event.target.value
@@ -19,21 +29,30 @@ class SearchBar extends Component {
     }
 
     handleSearch(event) {
-        this.props.searchSpotify(this.state.searchTerm)
-        event.preventDefault()
+        if(this.state.searchTerm === "") {
+            localStorage.setItem('searchTerm', JSON.stringify(this.state.searchTerm))
+            return;
+        } else {
+            this.props.searchSpotify(this.state.searchTerm)
+            event.preventDefault()
+        }
     }
 
     handleKeyPress(event) {
-        if(event.key === 'Enter') {
-          this.props.searchSpotify(this.state.searchTerm)
-          event.preventDefault()
+        if(this.state.searchTerm === "") {
+            localStorage.setItem('searchTerm', JSON.stringify(this.state.searchTerm))
+            return;
+        } else if (event.key === 'Enter') {
+            this.props.searchSpotify(this.state.searchTerm)
+            event.preventDefault()
         }
     }
 
     render() {
         return (
             <div className="SearchBar">
-                <input placeholder="Enter A Song, Album, or Artist" 
+                <input placeholder={"Enter a song, album, or artist"}
+                       value={this.state.searchTerm}
                        onChange={this.handleTermChange} 
                        onKeyPress={this.handleKeyPress} autoFocus/>
                 <a onClick={this.handleSearch}>SEARCH</a>
