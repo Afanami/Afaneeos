@@ -1,6 +1,6 @@
 let accessToken = "";
 const client_ID = "c87453a7ae5849bf895c40829c06315a";
-const redirect_uri = "http://localhost:3000/";
+const redirect_uri = "http://afaneeos.surge.sh/";
 
 let Spotify = {
   getAccessToken() {
