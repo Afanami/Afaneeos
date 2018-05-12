@@ -1,4 +1,5 @@
 .Track {
+  cursor: pointer;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(256, 256, 256, 0.8);
@@ -6,13 +7,13 @@
 
 .Track-action {
   cursor: pointer;
-  padding: .5rem;
+  padding: 0.5rem;
   font-size: 1.05rem;
-  transition: color .25s;
+  transition: color 0.25s;
 }
 
 .Track-action:hover {
-  color: rgba(265, 265, 265, .5);
+  color: rgba(265, 265, 265, 0.5);
 }
 
 .Track-information {
@@ -24,11 +25,11 @@
 }
 
 .Track-information h3 {
-  margin-bottom: .22rem;
+  margin-bottom: 0.22rem;
 }
 
 .Track-information p {
-  font-size: .83rem;
+  font-size: 0.83rem;
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
 }

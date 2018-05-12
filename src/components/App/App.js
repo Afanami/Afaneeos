@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
-import SearchBar from '../SearchBar/SearchBar';
-import SearchResults from '../SearchResults/SearchResults';
-import Playlist from '../Playlist/Playlist';
-import Spotify from '../../util/Spotify';
+import React, { Component } from "react";
+import "./App.css";
+import SearchBar from "../SearchBar/SearchBar";
+import SearchResults from "../SearchResults/SearchResults";
+import Playlist from "../Playlist/Playlist";
+import Spotify from "../../util/Spotify";
+import store from "store";
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
 
     this.state = {
       searchResults: [],
-      playlistName: 'New Playlist',
+      playlistName: "New Playlist",
       playlistTracks: []
     };
 
@@ -20,50 +21,73 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.searchSpotify = this.searchSpotify.bind(this);
-  }
-
-  componentWillUpdate() {
-    localStorage.setItem('playlistTracks', JSON.stringify(this.state.playlistTracks));
+    this.resetPlaylist = this.resetPlaylist.bind(this);
   }
 
   componentWillMount() {
-    localStorage.getItem('playlistTracks') && this.setState({
-        playlistTracks: JSON.parse(localStorage.getItem('playlistTracks'))
+    this.setState({
+      playlistTracks: store.get("playlistTracks") || [],
+      playlistName: store.get("playlistName") || "New Playlist"
     });
   }
 
   addTrack(track) {
-    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+    if (
+      this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)
+    ) {
       return;
     } else {
-      this.state.playlistTracks.push(track)
-      this.setState({
-        playlistTracks: this.state.playlistTracks
-      });
+      this.state.playlistTracks.push(track);
+      this.setState(
+        {
+          playlistTracks: this.state.playlistTracks
+        },
+        () => {
+          store.set("playlistTracks", this.state.playlistTracks);
+        }
+      );
     }
   }
 
   removeTrack(track) {
-    this.setState({
-      playlistTracks: this.state.playlistTracks.filter(removedTrack => removedTrack.id !== track.id)
-    });
+    this.setState(
+      {
+        playlistTracks: this.state.playlistTracks.filter(
+          removedTrack => removedTrack.id !== track.id
+        )
+      },
+      () => {
+        store.set("playlistTracks", this.state.playlistTracks);
+      }
+    );
   }
 
   updatePlaylistName(name) {
-    this.setState({
-      playlistName: name
-    });
+    this.setState(
+      {
+        playlistName: name
+      },
+      () => {
+        store.set("playlistName", this.state.playlistName);
+      }
+    );
   }
 
   savePlaylist(playlistName, arrayTrackURIs) {
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
 
-    Spotify.savePlaylist(this.state.playlistName, trackURIs)
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
 
-    this.setState({
-      playlistName: 'New Playlist',
-      playlistTracks: [],
-    });
+    this.setState(
+      {
+        playlistName: "New Playlist",
+        playlistTracks: []
+      },
+      () => {
+        store.set("playlistName", "New Playlist");
+        store.set("playlistTracks", []);
+      }
+    );
   }
 
   searchSpotify(searchTerm) {
@@ -74,20 +98,33 @@ class App extends Component {
     });
   }
 
+  resetPlaylist() {
+    this.setState({
+      playlistTracks: []
+    });
+  }
+
   render() {
     return (
       <div>
-        <h1>Afan<span className="highlight">eeos</span></h1>
+        <h1>
+          Afan<span className="highlight">eeos</span>
+        </h1>
         <div className="App">
           <SearchBar searchSpotify={this.searchSpotify} />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}
-              onAdd={this.addTrack} />
-            <Playlist playlistName={this.state.playlistName}
+            <SearchResults
+              searchResults={this.state.searchResults}
+              onAdd={this.addTrack}
+            />
+            <Playlist
+              playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
-              onSave={this.savePlaylist}/>
+              onSave={this.savePlaylist}
+              onReset={this.resetPlaylist}
+            />
           </div>
         </div>
       </div>
@@ -96,4 +133,3 @@ class App extends Component {
 }
 
 export default App;
-
