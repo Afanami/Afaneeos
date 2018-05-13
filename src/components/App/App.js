@@ -99,9 +99,16 @@ class App extends Component {
   }
 
   resetPlaylist() {
-    this.setState({
-      playlistTracks: []
-    });
+    this.setState(
+      {
+        playlistName: "New Playlist",
+        playlistTracks: []
+      },
+      () => {
+        store.set("playlistName", "New Playlist");
+        store.set("playlistTracks", []);
+      }
+    );
   }
 
   render() {

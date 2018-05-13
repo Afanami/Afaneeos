@@ -13,6 +13,7 @@
 }
 
 .Track-action:hover {
+  cursor: pointer;
   color: rgba(265, 265, 265, 0.5);
 }
 
@@ -22,6 +23,11 @@
   flex-direction: column;
   justify-content: center;
   height: 72px;
+}
+
+.Track-information:hover {
+  cursor: pointer;
+  color: rgba(265, 265, 265, 0.5);
 }
 
 .Track-information h3 {
