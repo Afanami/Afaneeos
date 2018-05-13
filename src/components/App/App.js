@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import "./App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import UserPlaylist from "../UserPlaylists/UserPlaylists";
 import Spotify from "../../util/Spotify";
 import store from "store";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class App extends Component {
     this.state = {
       searchResults: [],
       playlistName: "New Playlist",
-      playlistTracks: []
+      playlistTracks: [],
+      userPlaylists: []
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -22,6 +24,7 @@ class App extends Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.searchSpotify = this.searchSpotify.bind(this);
     this.resetPlaylist = this.resetPlaylist.bind(this);
+    this.getUserPlaylists = this.getUserPlaylists.bind(this);
   }
 
   componentWillMount() {
@@ -98,6 +101,14 @@ class App extends Component {
     });
   }
 
+  getUserPlaylists() {
+    Spotify.getUserPlaylists().then(playlists => {
+      this.setState({
+        userPlaylists: playlists
+      });
+    });
+  }
+
   resetPlaylist() {
     this.setState(
       {
@@ -131,6 +142,12 @@ class App extends Component {
               onNameChange={this.updatePlaylistName}
               onSave={this.savePlaylist}
               onReset={this.resetPlaylist}
+            />
+          </div>
+          <div className="User-playlists">
+            <UserPlaylist
+              userPlaylists={this.state.userPlaylists}
+              getPlaylists={this.getUserPlaylists}
             />
           </div>
         </div>

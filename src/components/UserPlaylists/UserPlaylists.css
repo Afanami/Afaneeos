@@ -1,31 +1,31 @@
-.Playlist {
+.UserPlaylists {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
   overflow-y: scroll;
-  width: 50%;
+  width: 95%;
   max-height: 950px;
   padding: 2.27rem 1.16rem;
-  margin: 10px 10px 20px 20px;
   background-color: rgba(1, 12, 63, 0.7);
   box-shadow: 0 4px 2px 2px #000000;
 }
 
-.Playlist input {
+.UserPlaylists h2 {
   width: 100%;
   align-items: center;
   text-align: center;
   border: 0;
   outline: 0;
+  padding: 0.5rem;
   background: transparent;
   border-bottom: 1px solid #6f6f6f;
   font-family: "Poppins", sans-serif;
   font-size: 1.55rem;
   color: #fff;
 }
-
-.Reset-playlist {
+.Get-user-playlists {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
   width: 10rem;
   padding: 0.77rem 0;
@@ -38,25 +38,16 @@
   display: inline-block;
 }
 
-.Reset-playlist:hover {
+.Get-user-playlists:hover {
   background-color: rgba(108, 65, 233, 0.7);
 }
 
-.Playlist-save {
-  cursor: pointer;
-  width: 10rem;
-  padding: 0.77rem 0;
-  border-radius: 54px;
-  margin-top: 1.27rem;
-  background-color: #6c41ec;
-  text-align: center;
-  font-size: 0.83rem;
-  transition: background-color 0.25s;
-  display: inline-block;
-}
-
-.Playlist-save:hover {
-  background-color: rgba(108, 65, 233, 0.7);
+.Playlists-information {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 72px;
 }
 
 ::-webkit-scrollbar {
@@ -65,7 +56,8 @@
 }
 
 @media only screen and (max-width: 1020px) {
-  .Playlist {
+  .UserPlaylists {
     width: 90%;
+    margin-bottom: 2rem;
   }
 }

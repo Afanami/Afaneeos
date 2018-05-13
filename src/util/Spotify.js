@@ -19,6 +19,35 @@ let Spotify = {
     }
   },
 
+  getUserPlaylists() {
+    accessToken = this.getAccessToken();
+    let getHeaders = { Authorization: `Bearer ${accessToken}` };
+    let user_id = "";
+    return fetch("https://api.spotify.com/v1/me", { headers: getHeaders })
+      .then(response => response.json())
+      .then(jsonResponse => {
+        if (jsonResponse.id) {
+          user_id = jsonResponse.id;
+          return fetch(
+            `https://api.spotify.com/v1/users/${user_id}/playlists`,
+            { headers: getHeaders }
+          )
+            .then(response => response.json())
+            .then(jsonResponse => {
+              if (jsonResponse.items) {
+                return jsonResponse.items.map(playlistProperties => ({
+                  name: playlistProperties.name,
+                  tracks: playlistProperties.tracks.href,
+                  numOfTracks: playlistProperties.tracks.total
+                }));
+              } else {
+                return;
+              }
+            });
+        }
+      });
+  },
+
   search(searchTerm) {
     accessToken = this.getAccessToken();
     return fetch(
