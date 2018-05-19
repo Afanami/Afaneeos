@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
-import UserPlaylist from "../UserPlaylists/UserPlaylists";
+import GetPlaylists from "../GetPlaylists/GetPlaylists";
 import Spotify from "../../util/Spotify";
 import store from "store";
 import "./App.css";
@@ -110,6 +110,7 @@ class App extends Component {
   }
 
   resetPlaylist() {
+    this.getUserPlaylists();
     this.setState(
       {
         playlistName: "New Playlist",
@@ -145,9 +146,12 @@ class App extends Component {
             />
           </div>
           <div className="User-playlists">
-            <UserPlaylist
-              userPlaylists={this.state.userPlaylists}
-              getPlaylists={this.getUserPlaylists}
+            <a className="Get-user-playlists" onClick={this.getUserPlaylists()}>
+              SHOW MY PLAYLISTS
+            </a>
+            <GetPlaylists
+              userPlaylist={this.state.userPlaylists}
+              getPlaylist={this.getUserPlaylists}
             />
           </div>
         </div>

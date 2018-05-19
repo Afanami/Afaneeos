@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import UserPlaylists from "../UserPlaylists/UserPlaylists";
 import "./UserPlaylistsList.css";
 
-class TrackList extends Component {
+class UserPlaylistsList extends Component {
   render() {
     return (
-      <div className="TrackList">
-        {this.props.tracks &&
-          this.props.tracks.map(track => {
+      <div className="UserPlaylistsList">
+        {this.props.playlists &&
+          this.props.playlists.map(userPlaylist => {
             return (
-              <Track
-                key={track.id}
-                track={track}
-                onAdd={this.props.onAdd}
-                onRemove={this.props.onRemove}
-                isRemoval={this.props.isRemoval}
+              <UserPlaylists
+                key={userPlaylist.id}
+                userPlaylist={userPlaylist}
+                // onAdd={this.props.onAdd}
+                // onRemove={this.props.onRemove}
+                // isRemoval={this.props.isRemoval}
               />
             );
           })}
@@ -23,4 +23,4 @@ class TrackList extends Component {
   }
 }
 
-export default TrackList;
+export default UserPlaylistsList;

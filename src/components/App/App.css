@@ -49,6 +49,25 @@ h2 {
   width: 100%;
 }
 
+.Get-user-playlists {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 10rem;
+  padding: 0.77rem 0;
+  border-radius: 54px;
+  margin-top: 1.27rem;
+  background-color: #6c41ec;
+  text-align: center;
+  font-size: 0.83rem;
+  transition: background-color 0.25s;
+  display: inline-block;
+}
+
+.Get-user-playlists:hover {
+  background-color: rgba(108, 65, 233, 0.7);
+}
+
 @media only screen and (max-width: 1020px) {
   .App-playlist {
     align-items: center;

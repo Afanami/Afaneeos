@@ -9,13 +9,13 @@ class UserPlaylists extends Component {
   }
 
   renderPlaylists() {
-    if (this.props.userPlaylists.length !== 0) {
+    if (this.props.userPlaylist.length !== 0) {
       return (
         <a>
-          <h3>{this.props.userPlaylists.name}</h3>
+          <h3>{this.props.userPlaylist.name}</h3>
           <p>
-            {this.props.userPlaylists.tracks}
-            {this.props.userPlaylists.numOfTracks}
+            {this.props.userPlaylist.tracks}
+            {this.props.userPlaylist.numOfTracks}
           </p>
         </a>
       );
@@ -28,11 +28,10 @@ class UserPlaylists extends Component {
     console.log(this.props);
     return (
       <div className="UserPlaylists">
-        <h2>Your Current Playlists</h2>
         <div className="Playlists-information">{this.renderPlaylists()}</div>
-        <a className="Get-user-playlists" onClick={this.props.getPlaylists}>
+        {/* <a className="Get-user-playlists" onClick={this.props.getPlaylist}>
           SHOW MY PLAYLISTS
-        </a>
+        </a> */}
       </div>
     );
   }
