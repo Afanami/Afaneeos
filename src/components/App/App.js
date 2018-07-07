@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
-import GetPlaylists from "../GetPlaylists/GetPlaylists";
+// import GetPlaylists from "../GetPlaylists/GetPlaylists";
 import Spotify from "../../util/Spotify";
 import store from "store";
 import "./App.css";
@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       searchResults: [],
-      playlistName: "New Playlist",
+      playlistName: "Enter Playlist Name",
       playlistTracks: [],
       userPlaylists: []
     };
@@ -30,7 +30,7 @@ class App extends Component {
   componentWillMount() {
     this.setState({
       playlistTracks: store.get("playlistTracks") || [],
-      playlistName: store.get("playlistName") || "New Playlist"
+      playlistName: store.get("playlistName") || "Enter Playlist Name"
     });
   }
 
@@ -83,11 +83,11 @@ class App extends Component {
 
     this.setState(
       {
-        playlistName: "New Playlist",
+        playlistName: "Enter Playlist Name",
         playlistTracks: []
       },
       () => {
-        store.set("playlistName", "New Playlist");
+        store.set("playlistName", "Enter Playlist Name");
         store.set("playlistTracks", []);
       }
     );
@@ -113,11 +113,11 @@ class App extends Component {
     this.getUserPlaylists();
     this.setState(
       {
-        playlistName: "New Playlist",
+        playlistName: "Enter Playlist Name",
         playlistTracks: []
       },
       () => {
-        store.set("playlistName", "New Playlist");
+        store.set("playlistName", "Enter Playlist Name");
         store.set("playlistTracks", []);
       }
     );
@@ -145,7 +145,7 @@ class App extends Component {
               onReset={this.resetPlaylist}
             />
           </div>
-          <div className="User-playlists">
+          {/* <div className="User-playlists">
             <a className="Get-user-playlists" onClick={this.getUserPlaylists()}>
               SHOW MY PLAYLISTS
             </a>
@@ -153,7 +153,7 @@ class App extends Component {
               userPlaylist={this.state.userPlaylists}
               getPlaylist={this.getUserPlaylists}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     );

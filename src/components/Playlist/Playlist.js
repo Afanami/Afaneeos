@@ -26,11 +26,11 @@ class Playlist extends Component {
           onRemove={this.props.onRemove}
           isRemoval={true}
         />
-        <a className="Playlist-save" onClick={this.props.onReset}>
-          RESET
-        </a>
         <a className="Playlist-save" onClick={this.props.onSave}>
           SAVE TO SPOTIFY
+        </a>
+        <a className="Reset-playlist" onClick={this.props.onReset}>
+          RESET
         </a>
       </div>
     );

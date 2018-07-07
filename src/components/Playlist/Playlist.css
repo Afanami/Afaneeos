@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
   overflow-y: scroll;
   width: 50%;
   max-height: 950px;
@@ -15,7 +15,7 @@
 .Playlist input {
   width: 100%;
   align-items: center;
-  text-align: center;
+  text-align: left;
   border: 0;
   outline: 0;
   background: transparent;
@@ -23,6 +23,8 @@
   font-family: "Poppins", sans-serif;
   font-size: 1.55rem;
   color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .Reset-playlist {
@@ -31,15 +33,18 @@
   padding: 0.77rem 0;
   border-radius: 54px;
   margin-top: 1.27rem;
-  background-color: #6c41ec;
+  background-color: rgba(214, 202, 202, 0.2);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  border: 2px solid black;
   text-align: center;
   font-size: 0.83rem;
-  transition: background-color 0.25s;
+  transition: background-color 0.3s;
   display: inline-block;
 }
 
 .Reset-playlist:hover {
-  background-color: rgba(108, 65, 233, 0.7);
+  background-color: rgba(214, 202, 202, 0.5);
 }
 
 .Playlist-save {
@@ -49,10 +54,13 @@
   border-radius: 54px;
   margin-top: 1.27rem;
   background-color: #6c41ec;
+  border: 2px solid black;
   text-align: center;
   font-size: 0.83rem;
-  transition: background-color 0.25s;
+  transition: background-color 0.3s;
   display: inline-block;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .Playlist-save:hover {
