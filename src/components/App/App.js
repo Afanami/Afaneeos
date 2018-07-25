@@ -8,6 +8,8 @@ import store from "store";
 import "./App.css";
 
 class App extends Component {
+  // Inherit methods and properties and intialise state
+  // Bind any methods created to prevent infinite render loop
   constructor(props) {
     super(props);
 
@@ -27,6 +29,7 @@ class App extends Component {
     this.getUserPlaylists = this.getUserPlaylists.bind(this);
   }
 
+  // Get local storage values on page load
   componentWillMount() {
     this.setState({
       playlistTracks: store.get("playlistTracks") || [],
@@ -34,6 +37,8 @@ class App extends Component {
     });
   }
 
+  // Method to add a selected track & set localstorage
+  // Checks if track already in playlist if not adds it and updates state
   addTrack(track) {
     if (
       this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)
@@ -52,6 +57,9 @@ class App extends Component {
     }
   }
 
+  // Method to remove track & set localstorage
+  // Compares track ids of tracks in playlist to selected track
+  // Filters out track with matching id, filters in rest
   removeTrack(track) {
     this.setState(
       {
@@ -76,6 +84,8 @@ class App extends Component {
     );
   }
 
+  // Method to save a playlist to Spotify & update localstorage
+  // Makes a call to method in Spotify.js, savePlaylist()
   savePlaylist(playlistName, arrayTrackURIs) {
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
 
@@ -93,6 +103,8 @@ class App extends Component {
     );
   }
 
+  // Method to search Spotify for tracks
+  // Makes a call to method in Spotify.js, search()
   searchSpotify(searchTerm) {
     Spotify.search(searchTerm).then(results => {
       this.setState({
@@ -101,6 +113,8 @@ class App extends Component {
     });
   }
 
+  // Method to get Spotify playlists
+  // Makes a call to method in Spotify.js, search()
   getUserPlaylists() {
     Spotify.getUserPlaylists().then(playlists => {
       this.setState({
@@ -109,6 +123,7 @@ class App extends Component {
     });
   }
 
+  // Method to reset playlist
   resetPlaylist() {
     this.getUserPlaylists();
     this.setState(
