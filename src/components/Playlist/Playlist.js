@@ -2,18 +2,22 @@ import React, { Component } from "react";
 import TrackList from "../TrackList/TrackList";
 import "./Playlist.css";
 
+// Component to handle playlist rendering
 class Playlist extends Component {
+  // Inherit methods and bind any methods to prevent infinite loop
   constructor(props) {
     super(props);
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
-  /* Probably implemented wrong */
+  // Check when user enters a value into the playlist name
+  // Call method from parent component and update
   handleNameChange(event) {
     this.props.onNameChange(event.target.value);
     event.preventDefault();
   }
 
+  // Render playlist component
   render() {
     return (
       <div className="Playlist">
