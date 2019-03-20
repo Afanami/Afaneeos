@@ -24,11 +24,12 @@
 .SearchBar a {
   cursor: pointer;
   width: 8rem;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
+  margin-top: -0.5rem;
   border-radius: 54px;
   background-color: #010c3f;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   transition: background-color 0.25s;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
