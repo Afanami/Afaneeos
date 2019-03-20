@@ -86,7 +86,7 @@ class App extends Component {
 
   // Method to save a playlist to Spotify & update localstorage
   // Makes a call to method in Spotify.js, savePlaylist()
-  savePlaylist(playlistName, arrayTrackURIs) {
+  savePlaylist() {
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
 
     Spotify.savePlaylist(this.state.playlistName, trackURIs);
@@ -117,9 +117,12 @@ class App extends Component {
   // Makes a call to method in Spotify.js, search()
   getUserPlaylists() {
     Spotify.getUserPlaylists().then(playlists => {
-      this.setState({
-        userPlaylists: playlists
-      });
+      this.setState(
+        {
+          userPlaylists: playlists
+        },
+        console.log(this.state.userPlaylists)
+      );
     });
   }
 
