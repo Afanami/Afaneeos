@@ -1,5 +1,6 @@
+import client_ID from "../apiKeys/apiKey.js";
+
 let accessToken = "";
-const client_ID = "add93bb137614ae9bc3627b284d6011b";
 const redirect_uri = "https://afaneeos.com/";
 
 let Spotify = {
