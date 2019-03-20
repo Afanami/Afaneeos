@@ -8,7 +8,6 @@
 
 # production
 /build
-/src/apiKeys
 
 # misc
 .DS_Store
